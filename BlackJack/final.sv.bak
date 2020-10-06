@@ -1,0 +1,34 @@
+module final(
+	input logic clk, hold, hit, resetButton,
+    output LCD_ON, LCD_BLON, LCD_RW, LCD_EN, LCD_RS,
+    inout [7:0] LCD_DATA
+);
+
+    // Internal signals
+    logic reset, syncHold, syncHit, syncResetButton, holdAI, hitAI;
+    logic [1:0] userSelect;
+	logic [3:0] card, currentState;
+    logic [4:0] p1_high, p1_low, p2_high, p2_low, d_high, d_low;
+    logic [29:0] numbers;
+
+    // Assignments
+    assign reset = currentState == 0;
+    assign numbers[29:25] = d_low;
+    assign numbers[24:20] = d_high;
+    assign numbers[19:15] = p2_low;
+    assign numbers[14:10] = p2_high;
+    assign numbers[9:5] = p1_low;
+    assign numbers[4:0] = p1_high;
+
+    // Connect device(s) to test
+    asyncButton hit(.clk(clk), .in(resetButton), .out(syncResetButton));
+    syncButton hit(.clk(clk), .in(hit), .out(syncHit));
+    syncButton hold(.clk(clk), .in(hold), .out(syncHold));
+
+	fsm fsm(clk, .hold(syncHold), .hit(syncHit), holdAI, hitAI, p1_high, p1_low, p2_high, p2_low, d_high, d_low, userSelect, currentState);
+	playerAI ai(clk, .p_high(p2_high), .p_low(p2_low), d_high, .hold(holdAI), .hit(hitAI));
+	cardPuller puller(clk, reset, userSelect, card);
+	cardManager manager(clk, reset, userSelect, card, cardsUpdated, p1_high, p1_low, p2_high, p2_low, d_high, d_low);
+	lcd_top  xDisp(.CLOCK_50(clk), .reset(syncResetButton), numbers, .LCD_ON(LCD_ON), .LCD_BLON(LCD_BLON), .LCD_RW(LCD_RW), .LCD_EN(LCD_EN), .LCD_RS(LCD_RS), .LCD_DATA(LCD_DATA), currentState);
+
+endmodule

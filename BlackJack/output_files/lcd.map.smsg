@@ -1,0 +1,1 @@
+Warning (10268): Verilog HDL information at cardManager.sv(27): always construct contains both blocking and non-blocking assignments File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/cardManager.sv Line: 27

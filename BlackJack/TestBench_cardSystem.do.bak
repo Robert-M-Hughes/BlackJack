@@ -1,0 +1,40 @@
+if {[file exists rtl_work]} {
+	vdel -lib rtl_work -all
+}
+vlib rtl_work
+vmap work rtl_work
+
+vlog -sv -work work [pwd]/TestBench_cardSystem.sv
+vlog -sv -work work [pwd]/cardPuller.sv
+vlog -sv -work work [pwd]/cardManager.sv
+vlog -sv -work work [pwd]/lfsr.sv
+vsim TestBench_cardSystem
+
+add wave TestBench_cardSystem/clk
+add wave TestBench_cardSystem/pulledCards
+add wave TestBench_cardSystem/randomUser
+add wave TestBench_cardSystem/userSelect
+add wave TestBench_cardSystem/puller/randomNumber
+add wave TestBench_cardSystem/puller/pulledCards
+add wave TestBench_cardSystem/card
+
+add wave TestBench_cardSystem/p1_high
+add wave TestBench_cardSystem/expectedP1High
+add wave TestBench_cardSystem/p1_low
+add wave TestBench_cardSystem/expectedP1Low
+
+add wave TestBench_cardSystem/p2_high
+add wave TestBench_cardSystem/expectedP2High
+add wave TestBench_cardSystem/p2_low
+add wave TestBench_cardSystem/expectedP2Low
+
+add wave TestBench_cardSystem/d_high
+add wave TestBench_cardSystem/expectedDHigh
+
+add wave TestBench_cardSystem/d_low
+add wave TestBench_cardSystem/expectedDLow
+
+view structure
+view signals
+
+run 100000

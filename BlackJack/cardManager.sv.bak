@@ -1,0 +1,57 @@
+module cardManager(
+    input logic clk, reset,
+    input logic [1:0] userSelect,
+    input logic [3:0] card,
+    output logic cardsUpdated,
+    output logic [4:0] p1_high, p1_low, p2_high, p2_low, d_high, d_low
+);
+    
+    // Track previous userSelect
+    logic [1:0] prevUserSelect = 0;
+
+    // Create hands memory
+    logic [9:0] hands [3:0] = { 0, 0, 0, 0 };
+    assign p1_high = hands[0][9:5];
+    assign p1_low = hands[0][4:0];
+    assign p2_high = hands[1][9:5];
+    assign p2_low = hands[1][4:0];
+    assign d_high = hands[2][9:5];
+    assign d_low = hands[2][4:0];
+
+    // Write on enable write and read data
+    always_ff @(posedge clk) begin
+        // Handle based off user select
+        if(reset) begin
+			hands = { 0, 0, 0, 0 };
+		  end
+		  else if(prevUserSelect != userSelect) begin
+            // Set cardsUpdated flag
+            cardsUpdated <= 0;
+        end
+        else if(userSelect > 0 && card > 0) begin
+            if(card == 1) begin
+                // If Ace is drawn
+
+                hands[userSelect-1][9:5] <= hands[userSelect-1][9:5] + 11;
+                hands[userSelect-1][4:0] <= hands[userSelect-1][4:0] + 1;
+            end
+            else if (p1_low !== 0) begin
+                // If Ace has been drawn previously
+
+                hands[userSelect-1][9:5] <= hands[userSelect-1][9:5] + card;
+                hands[userSelect-1][4:0] <= hands[userSelect-1][4:0] + card;
+            end
+            else begin
+                // If no Ace has been drawn
+
+                hands[userSelect-1][9:5] <= hands[userSelect-1][9:5] + card;
+            end
+
+            // Set cardsUpdated flag
+            cardsUpdated <= 1;
+        end
+
+        // Update prevUserSelect
+        prevUserSelect <= userSelect;
+    end
+endmodule

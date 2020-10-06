@@ -1,0 +1,927 @@
+Analysis & Synthesis report for lcd
+Wed Dec 04 21:19:09 2019
+Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. State Machine - |blackjack|lcd_top:xDisp|LCD_Display:u1|next_command
+  9. State Machine - |blackjack|lcd_top:xDisp|LCD_Display:u1|state
+ 10. Registers Removed During Synthesis
+ 11. General Register Statistics
+ 12. Inverted Register Statistics
+ 13. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 14. Parameter Settings for User Entity Instance: lcd_top:xDisp|LCD_Display:u1
+ 15. Parameter Settings for Inferred Entity Instance: lcd_top:xDisp|lpm_divide:Mod1
+ 16. Parameter Settings for Inferred Entity Instance: lcd_top:xDisp|lpm_divide:Div1
+ 17. Parameter Settings for Inferred Entity Instance: lcd_top:xDisp|lpm_divide:Mod3
+ 18. Parameter Settings for Inferred Entity Instance: lcd_top:xDisp|lpm_divide:Div3
+ 19. Parameter Settings for Inferred Entity Instance: lcd_top:xDisp|lpm_divide:Mod4
+ 20. Parameter Settings for Inferred Entity Instance: lcd_top:xDisp|lpm_divide:Mod0
+ 21. Parameter Settings for Inferred Entity Instance: lcd_top:xDisp|lpm_divide:Mod2
+ 22. Parameter Settings for Inferred Entity Instance: lcd_top:xDisp|lpm_divide:Div4
+ 23. Parameter Settings for Inferred Entity Instance: lcd_top:xDisp|lpm_divide:Div0
+ 24. Parameter Settings for Inferred Entity Instance: lcd_top:xDisp|lpm_divide:Div2
+ 25. Port Connectivity Checks: "lcd_top:xDisp|LCD_Display:u1|LCD_display_string:u1"
+ 26. Port Connectivity Checks: "lcd_top:xDisp|LCD_Display:u1"
+ 27. Port Connectivity Checks: "lcd_top:xDisp"
+ 28. Post-Synthesis Netlist Statistics for Top Partition
+ 29. Elapsed Time Per Partition
+ 30. Analysis & Synthesis Messages
+ 31. Analysis & Synthesis Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2018  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details.
+
+
+
++----------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                     ;
++------------------------------------+---------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Wed Dec 04 21:19:09 2019       ;
+; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
+; Revision Name                      ; lcd                                         ;
+; Top-level Entity Name              ; blackjack                                   ;
+; Family                             ; Cyclone IV E                                ;
+; Total logic elements               ; 810                                         ;
+;     Total combinational functions  ; 777                                         ;
+;     Dedicated logic registers      ; 198                                         ;
+; Total registers                    ; 198                                         ;
+; Total pins                         ; 44                                          ;
+; Total virtual pins                 ; 0                                           ;
+; Total memory bits                  ; 0                                           ;
+; Embedded Multiplier 9-bit elements ; 0                                           ;
+; Total PLLs                         ; 0                                           ;
++------------------------------------+---------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                              ;
++------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                           ; Setting            ; Default Value      ;
++------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                           ; EP4CE115F29C7      ;                    ;
+; Top-level entity name                                            ; blackjack          ; lcd                ;
+; Family name                                                      ; Cyclone IV E       ; Cyclone V          ;
+; Use smart compilation                                            ; Off                ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                      ; Off                ; Off                ;
+; Restructure Multiplexers                                         ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                              ; Off                ; Off                ;
+; Preserve fewer node names                                        ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                    ; Enable             ; Enable             ;
+; Verilog Version                                                  ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                     ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                         ; Auto               ; Auto               ;
+; Safe State Machine                                               ; Off                ; Off                ;
+; Extract Verilog State Machines                                   ; On                 ; On                 ;
+; Extract VHDL State Machines                                      ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                       ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                   ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                          ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                        ; On                 ; On                 ;
+; Parallel Synthesis                                               ; On                 ; On                 ;
+; DSP Block Balancing                                              ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                               ; On                 ; On                 ;
+; Power-Up Don't Care                                              ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                     ; Off                ; Off                ;
+; Remove Duplicate Registers                                       ; On                 ; On                 ;
+; Ignore CARRY Buffers                                             ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                           ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                            ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                        ; Off                ; Off                ;
+; Ignore LCELL Buffers                                             ; Off                ; Off                ;
+; Ignore SOFT Buffers                                              ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                   ; Off                ; Off                ;
+; Optimization Technique                                           ; Balanced           ; Balanced           ;
+; Carry Chain Length                                               ; 70                 ; 70                 ;
+; Auto Carry Chains                                                ; On                 ; On                 ;
+; Auto Open-Drain Pins                                             ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                            ; Off                ; Off                ;
+; Auto ROM Replacement                                             ; On                 ; On                 ;
+; Auto RAM Replacement                                             ; On                 ; On                 ;
+; Auto DSP Block Replacement                                       ; On                 ; On                 ;
+; Auto Shift Register Replacement                                  ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                  ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                    ; On                 ; On                 ;
+; Strict RAM Replacement                                           ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                           ; Off                ; Off                ;
+; Auto RAM Block Balancing                                         ; On                 ; On                 ;
+; Auto RAM to Logic Cell Conversion                                ; Off                ; Off                ;
+; Auto Resource Sharing                                            ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                               ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                               ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                    ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing              ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                ; Off                ; Off                ;
+; Timing-Driven Synthesis                                          ; On                 ; On                 ;
+; Report Parameter Settings                                        ; On                 ; On                 ;
+; Report Source Assignments                                        ; On                 ; On                 ;
+; Report Connectivity Checks                                       ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                               ; Off                ; Off                ;
+; Synchronization Register Chain Length                            ; 2                  ; 2                  ;
+; Power Optimization During Synthesis                              ; Normal compilation ; Normal compilation ;
+; HDL message level                                                ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                  ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report         ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report               ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report        ; 100                ; 100                ;
+; Clock MUX Protection                                             ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                      ; Off                ; Off                ;
+; Block Design Naming                                              ; Auto               ; Auto               ;
+; SDC constraint protection                                        ; Off                ; Off                ;
+; Synthesis Effort                                                 ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal     ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                             ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                               ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                      ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                           ; On                 ; On                 ;
++------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 4           ;
+; Maximum allowed            ; 2           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 2           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.0%      ;
++----------------------------+-------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                                ;
++----------------------------------+-----------------+------------------------------+---------------------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                                            ; Library ;
++----------------------------------+-----------------+------------------------------+---------------------------------------------------------------------------------------------------------+---------+
+; blackjack.sv                     ; yes             ; User SystemVerilog HDL File  ; C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/blackjack.sv               ;         ;
+; syncButton.sv                    ; yes             ; User SystemVerilog HDL File  ; C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/syncButton.sv              ;         ;
+; playerAI.sv                      ; yes             ; User SystemVerilog HDL File  ; C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/playerAI.sv                ;         ;
+; lfsr.sv                          ; yes             ; User SystemVerilog HDL File  ; C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/lfsr.sv                    ;         ;
+; fsm.sv                           ; yes             ; User SystemVerilog HDL File  ; C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/fsm.sv                     ;         ;
+; cardPuller.sv                    ; yes             ; User SystemVerilog HDL File  ; C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/cardPuller.sv              ;         ;
+; cardManager.sv                   ; yes             ; User SystemVerilog HDL File  ; C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/cardManager.sv             ;         ;
+; asyncButton.sv                   ; yes             ; User SystemVerilog HDL File  ; C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/asyncButton.sv             ;         ;
+; Reset_Delay.sv                   ; yes             ; User SystemVerilog HDL File  ; C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/Reset_Delay.sv             ;         ;
+; lcd_top.sv                       ; yes             ; User SystemVerilog HDL File  ; C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/lcd_top.sv                 ;         ;
+; LCD_Display.sv                   ; yes             ; User SystemVerilog HDL File  ; C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/LCD_Display.sv             ;         ;
+; lpm_divide.tdf                   ; yes             ; Megafunction                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_divide.tdf                                   ;         ;
+; abs_divider.inc                  ; yes             ; Megafunction                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/abs_divider.inc                                  ;         ;
+; sign_div_unsign.inc              ; yes             ; Megafunction                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sign_div_unsign.inc                              ;         ;
+; aglobal181.inc                   ; yes             ; Megafunction                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/aglobal181.inc                                   ;         ;
+; db/lpm_divide_j9m.tdf            ; yes             ; Auto-Generated Megafunction  ; C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/db/lpm_divide_j9m.tdf      ;         ;
+; db/sign_div_unsign_8kh.tdf       ; yes             ; Auto-Generated Megafunction  ; C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/db/sign_div_unsign_8kh.tdf ;         ;
+; db/alt_u_div_44f.tdf             ; yes             ; Auto-Generated Megafunction  ; C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/db/alt_u_div_44f.tdf       ;         ;
+; db/add_sub_7pc.tdf               ; yes             ; Auto-Generated Megafunction  ; C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/db/add_sub_7pc.tdf         ;         ;
+; db/add_sub_8pc.tdf               ; yes             ; Auto-Generated Megafunction  ; C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/db/add_sub_8pc.tdf         ;         ;
+; db/lpm_divide_ghm.tdf            ; yes             ; Auto-Generated Megafunction  ; C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/db/lpm_divide_ghm.tdf      ;         ;
++----------------------------------+-----------------+------------------------------+---------------------------------------------------------------------------------------------------------+---------+
+
+
++---------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary             ;
++---------------------------------------------+-----------+
+; Resource                                    ; Usage     ;
++---------------------------------------------+-----------+
+; Estimated Total logic elements              ; 810       ;
+;                                             ;           ;
+; Total combinational functions               ; 777       ;
+; Logic element usage by number of LUT inputs ;           ;
+;     -- 4 input functions                    ; 420       ;
+;     -- 3 input functions                    ; 124       ;
+;     -- <=2 input functions                  ; 233       ;
+;                                             ;           ;
+; Logic elements by mode                      ;           ;
+;     -- normal mode                          ; 642       ;
+;     -- arithmetic mode                      ; 135       ;
+;                                             ;           ;
+; Total registers                             ; 198       ;
+;     -- Dedicated logic registers            ; 198       ;
+;     -- I/O registers                        ; 0         ;
+;                                             ;           ;
+; I/O pins                                    ; 44        ;
+;                                             ;           ;
+; Embedded Multiplier 9-bit elements          ; 0         ;
+;                                             ;           ;
+; Maximum fan-out node                        ; clk~input ;
+; Maximum fan-out                             ; 160       ;
+; Total fan-out                               ; 3142      ;
+; Average fan-out                             ; 2.93      ;
++---------------------------------------------+-----------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                                  ;
++-------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------------------------------------------+---------------------+--------------+
+; Compilation Hierarchy Node                ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                      ; Entity Name         ; Library Name ;
++-------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------------------------------------------+---------------------+--------------+
+; |blackjack                                ; 777 (12)            ; 198 (0)                   ; 0           ; 0            ; 0       ; 0         ; 44   ; 0            ; |blackjack                                                                                                               ; blackjack           ; work         ;
+;    |cardManager:manager|                  ; 90 (90)             ; 31 (31)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|cardManager:manager                                                                                           ; cardManager         ; work         ;
+;    |cardPuller:puller|                    ; 117 (111)           ; 63 (57)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|cardPuller:puller                                                                                             ; cardPuller          ; work         ;
+;       |lfsr:randGen|                      ; 6 (6)               ; 6 (6)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|cardPuller:puller|lfsr:randGen                                                                                ; lfsr                ; work         ;
+;    |fsm:xfsm|                             ; 101 (101)           ; 13 (13)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|fsm:xfsm                                                                                                      ; fsm                 ; work         ;
+;    |lcd_top:xDisp|                        ; 442 (0)             ; 80 (0)                    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lcd_top:xDisp                                                                                                 ; lcd_top             ; work         ;
+;       |LCD_Display:u1|                    ; 241 (96)            ; 59 (59)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lcd_top:xDisp|LCD_Display:u1                                                                                  ; LCD_Display         ; work         ;
+;          |LCD_display_string:u1|          ; 145 (145)           ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lcd_top:xDisp|LCD_Display:u1|LCD_display_string:u1                                                            ; LCD_display_string  ; work         ;
+;       |Reset_Delay:r0|                    ; 27 (27)             ; 21 (21)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lcd_top:xDisp|Reset_Delay:r0                                                                                  ; Reset_Delay         ; work         ;
+;       |lpm_divide:Div0|                   ; 17 (0)              ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lcd_top:xDisp|lpm_divide:Div0                                                                                 ; lpm_divide          ; work         ;
+;          |lpm_divide_ghm:auto_generated|  ; 17 (0)              ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lcd_top:xDisp|lpm_divide:Div0|lpm_divide_ghm:auto_generated                                                   ; lpm_divide_ghm      ; work         ;
+;             |sign_div_unsign_8kh:divider| ; 17 (0)              ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lcd_top:xDisp|lpm_divide:Div0|lpm_divide_ghm:auto_generated|sign_div_unsign_8kh:divider                       ; sign_div_unsign_8kh ; work         ;
+;                |alt_u_div_44f:divider|    ; 17 (17)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lcd_top:xDisp|lpm_divide:Div0|lpm_divide_ghm:auto_generated|sign_div_unsign_8kh:divider|alt_u_div_44f:divider ; alt_u_div_44f       ; work         ;
+;       |lpm_divide:Div1|                   ; 17 (0)              ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lcd_top:xDisp|lpm_divide:Div1                                                                                 ; lpm_divide          ; work         ;
+;          |lpm_divide_ghm:auto_generated|  ; 17 (0)              ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lcd_top:xDisp|lpm_divide:Div1|lpm_divide_ghm:auto_generated                                                   ; lpm_divide_ghm      ; work         ;
+;             |sign_div_unsign_8kh:divider| ; 17 (0)              ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lcd_top:xDisp|lpm_divide:Div1|lpm_divide_ghm:auto_generated|sign_div_unsign_8kh:divider                       ; sign_div_unsign_8kh ; work         ;
+;                |alt_u_div_44f:divider|    ; 17 (17)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lcd_top:xDisp|lpm_divide:Div1|lpm_divide_ghm:auto_generated|sign_div_unsign_8kh:divider|alt_u_div_44f:divider ; alt_u_div_44f       ; work         ;
+;       |lpm_divide:Div2|                   ; 17 (0)              ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lcd_top:xDisp|lpm_divide:Div2                                                                                 ; lpm_divide          ; work         ;
+;          |lpm_divide_ghm:auto_generated|  ; 17 (0)              ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lcd_top:xDisp|lpm_divide:Div2|lpm_divide_ghm:auto_generated                                                   ; lpm_divide_ghm      ; work         ;
+;             |sign_div_unsign_8kh:divider| ; 17 (0)              ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lcd_top:xDisp|lpm_divide:Div2|lpm_divide_ghm:auto_generated|sign_div_unsign_8kh:divider                       ; sign_div_unsign_8kh ; work         ;
+;                |alt_u_div_44f:divider|    ; 17 (17)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lcd_top:xDisp|lpm_divide:Div2|lpm_divide_ghm:auto_generated|sign_div_unsign_8kh:divider|alt_u_div_44f:divider ; alt_u_div_44f       ; work         ;
+;       |lpm_divide:Div3|                   ; 17 (0)              ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lcd_top:xDisp|lpm_divide:Div3                                                                                 ; lpm_divide          ; work         ;
+;          |lpm_divide_ghm:auto_generated|  ; 17 (0)              ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lcd_top:xDisp|lpm_divide:Div3|lpm_divide_ghm:auto_generated                                                   ; lpm_divide_ghm      ; work         ;
+;             |sign_div_unsign_8kh:divider| ; 17 (0)              ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lcd_top:xDisp|lpm_divide:Div3|lpm_divide_ghm:auto_generated|sign_div_unsign_8kh:divider                       ; sign_div_unsign_8kh ; work         ;
+;                |alt_u_div_44f:divider|    ; 17 (17)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lcd_top:xDisp|lpm_divide:Div3|lpm_divide_ghm:auto_generated|sign_div_unsign_8kh:divider|alt_u_div_44f:divider ; alt_u_div_44f       ; work         ;
+;       |lpm_divide:Div4|                   ; 17 (0)              ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lcd_top:xDisp|lpm_divide:Div4                                                                                 ; lpm_divide          ; work         ;
+;          |lpm_divide_ghm:auto_generated|  ; 17 (0)              ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lcd_top:xDisp|lpm_divide:Div4|lpm_divide_ghm:auto_generated                                                   ; lpm_divide_ghm      ; work         ;
+;             |sign_div_unsign_8kh:divider| ; 17 (0)              ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lcd_top:xDisp|lpm_divide:Div4|lpm_divide_ghm:auto_generated|sign_div_unsign_8kh:divider                       ; sign_div_unsign_8kh ; work         ;
+;                |alt_u_div_44f:divider|    ; 17 (17)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lcd_top:xDisp|lpm_divide:Div4|lpm_divide_ghm:auto_generated|sign_div_unsign_8kh:divider|alt_u_div_44f:divider ; alt_u_div_44f       ; work         ;
+;       |lpm_divide:Mod0|                   ; 17 (0)              ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lcd_top:xDisp|lpm_divide:Mod0                                                                                 ; lpm_divide          ; work         ;
+;          |lpm_divide_j9m:auto_generated|  ; 17 (0)              ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lcd_top:xDisp|lpm_divide:Mod0|lpm_divide_j9m:auto_generated                                                   ; lpm_divide_j9m      ; work         ;
+;             |sign_div_unsign_8kh:divider| ; 17 (0)              ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lcd_top:xDisp|lpm_divide:Mod0|lpm_divide_j9m:auto_generated|sign_div_unsign_8kh:divider                       ; sign_div_unsign_8kh ; work         ;
+;                |alt_u_div_44f:divider|    ; 17 (17)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lcd_top:xDisp|lpm_divide:Mod0|lpm_divide_j9m:auto_generated|sign_div_unsign_8kh:divider|alt_u_div_44f:divider ; alt_u_div_44f       ; work         ;
+;       |lpm_divide:Mod1|                   ; 19 (0)              ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lcd_top:xDisp|lpm_divide:Mod1                                                                                 ; lpm_divide          ; work         ;
+;          |lpm_divide_j9m:auto_generated|  ; 19 (0)              ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lcd_top:xDisp|lpm_divide:Mod1|lpm_divide_j9m:auto_generated                                                   ; lpm_divide_j9m      ; work         ;
+;             |sign_div_unsign_8kh:divider| ; 19 (0)              ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lcd_top:xDisp|lpm_divide:Mod1|lpm_divide_j9m:auto_generated|sign_div_unsign_8kh:divider                       ; sign_div_unsign_8kh ; work         ;
+;                |alt_u_div_44f:divider|    ; 19 (19)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lcd_top:xDisp|lpm_divide:Mod1|lpm_divide_j9m:auto_generated|sign_div_unsign_8kh:divider|alt_u_div_44f:divider ; alt_u_div_44f       ; work         ;
+;       |lpm_divide:Mod2|                   ; 17 (0)              ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lcd_top:xDisp|lpm_divide:Mod2                                                                                 ; lpm_divide          ; work         ;
+;          |lpm_divide_j9m:auto_generated|  ; 17 (0)              ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lcd_top:xDisp|lpm_divide:Mod2|lpm_divide_j9m:auto_generated                                                   ; lpm_divide_j9m      ; work         ;
+;             |sign_div_unsign_8kh:divider| ; 17 (0)              ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lcd_top:xDisp|lpm_divide:Mod2|lpm_divide_j9m:auto_generated|sign_div_unsign_8kh:divider                       ; sign_div_unsign_8kh ; work         ;
+;                |alt_u_div_44f:divider|    ; 17 (17)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lcd_top:xDisp|lpm_divide:Mod2|lpm_divide_j9m:auto_generated|sign_div_unsign_8kh:divider|alt_u_div_44f:divider ; alt_u_div_44f       ; work         ;
+;       |lpm_divide:Mod3|                   ; 19 (0)              ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lcd_top:xDisp|lpm_divide:Mod3                                                                                 ; lpm_divide          ; work         ;
+;          |lpm_divide_j9m:auto_generated|  ; 19 (0)              ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lcd_top:xDisp|lpm_divide:Mod3|lpm_divide_j9m:auto_generated                                                   ; lpm_divide_j9m      ; work         ;
+;             |sign_div_unsign_8kh:divider| ; 19 (0)              ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lcd_top:xDisp|lpm_divide:Mod3|lpm_divide_j9m:auto_generated|sign_div_unsign_8kh:divider                       ; sign_div_unsign_8kh ; work         ;
+;                |alt_u_div_44f:divider|    ; 19 (19)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lcd_top:xDisp|lpm_divide:Mod3|lpm_divide_j9m:auto_generated|sign_div_unsign_8kh:divider|alt_u_div_44f:divider ; alt_u_div_44f       ; work         ;
+;       |lpm_divide:Mod4|                   ; 17 (0)              ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lcd_top:xDisp|lpm_divide:Mod4                                                                                 ; lpm_divide          ; work         ;
+;          |lpm_divide_j9m:auto_generated|  ; 17 (0)              ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lcd_top:xDisp|lpm_divide:Mod4|lpm_divide_j9m:auto_generated                                                   ; lpm_divide_j9m      ; work         ;
+;             |sign_div_unsign_8kh:divider| ; 17 (0)              ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lcd_top:xDisp|lpm_divide:Mod4|lpm_divide_j9m:auto_generated|sign_div_unsign_8kh:divider                       ; sign_div_unsign_8kh ; work         ;
+;                |alt_u_div_44f:divider|    ; 17 (17)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lcd_top:xDisp|lpm_divide:Mod4|lpm_divide_j9m:auto_generated|sign_div_unsign_8kh:divider|alt_u_div_44f:divider ; alt_u_div_44f       ; work         ;
+;    |playerAI:ai|                          ; 13 (13)             ; 5 (5)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|playerAI:ai                                                                                                   ; playerAI            ; work         ;
+;    |syncButton:xhold|                     ; 1 (1)               ; 3 (3)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|syncButton:xhold                                                                                              ; syncButton          ; work         ;
+;    |syncButton:xsynchhit|                 ; 1 (1)               ; 3 (3)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|syncButton:xsynchhit                                                                                          ; syncButton          ; work         ;
++-------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------------------------------------------+---------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |blackjack|lcd_top:xDisp|LCD_Display:u1|next_command                                                                                                                                                                                                                 ;
++----------------------------+----------------------------+--------------------------+---------------------+---------------------+--------------------------+--------------------+---------------------------+-----------------------+-------------------------+-----------------------+
+; Name                       ; next_command.DISPLAY_CLEAR ; next_command.DISPLAY_OFF ; next_command.RESET3 ; next_command.RESET2 ; next_command.RETURN_HOME ; next_command.LINE2 ; next_command.Print_String ; next_command.MODE_SET ; next_command.DISPLAY_ON ; next_command.FUNC_SET ;
++----------------------------+----------------------------+--------------------------+---------------------+---------------------+--------------------------+--------------------+---------------------------+-----------------------+-------------------------+-----------------------+
+; next_command.FUNC_SET      ; 0                          ; 0                        ; 0                   ; 0                   ; 0                        ; 0                  ; 0                         ; 0                     ; 0                       ; 0                     ;
+; next_command.DISPLAY_ON    ; 0                          ; 0                        ; 0                   ; 0                   ; 0                        ; 0                  ; 0                         ; 0                     ; 1                       ; 1                     ;
+; next_command.MODE_SET      ; 0                          ; 0                        ; 0                   ; 0                   ; 0                        ; 0                  ; 0                         ; 1                     ; 0                       ; 1                     ;
+; next_command.Print_String  ; 0                          ; 0                        ; 0                   ; 0                   ; 0                        ; 0                  ; 1                         ; 0                     ; 0                       ; 1                     ;
+; next_command.LINE2         ; 0                          ; 0                        ; 0                   ; 0                   ; 0                        ; 1                  ; 0                         ; 0                     ; 0                       ; 1                     ;
+; next_command.RETURN_HOME   ; 0                          ; 0                        ; 0                   ; 0                   ; 1                        ; 0                  ; 0                         ; 0                     ; 0                       ; 1                     ;
+; next_command.RESET2        ; 0                          ; 0                        ; 0                   ; 1                   ; 0                        ; 0                  ; 0                         ; 0                     ; 0                       ; 1                     ;
+; next_command.RESET3        ; 0                          ; 0                        ; 1                   ; 0                   ; 0                        ; 0                  ; 0                         ; 0                     ; 0                       ; 1                     ;
+; next_command.DISPLAY_OFF   ; 0                          ; 1                        ; 0                   ; 0                   ; 0                        ; 0                  ; 0                         ; 0                     ; 0                       ; 1                     ;
+; next_command.DISPLAY_CLEAR ; 1                          ; 0                        ; 0                   ; 0                   ; 0                        ; 0                  ; 0                         ; 0                     ; 0                       ; 1                     ;
++----------------------------+----------------------------+--------------------------+---------------------+---------------------+--------------------------+--------------------+---------------------------+-----------------------+-------------------------+-----------------------+
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |blackjack|lcd_top:xDisp|LCD_Display:u1|state                                                                                                                                                                                          ;
++---------------------+---------------------+-------------------+--------------+--------------+------------+------------------+-------------------+-------------+--------------------+----------------+------------------+----------------+--------------+
+; Name                ; state.DISPLAY_CLEAR ; state.DISPLAY_OFF ; state.RESET3 ; state.RESET2 ; state.HOLD ; state.DROP_LCD_E ; state.RETURN_HOME ; state.LINE2 ; state.Print_String ; state.MODE_SET ; state.DISPLAY_ON ; state.FUNC_SET ; state.RESET1 ;
++---------------------+---------------------+-------------------+--------------+--------------+------------+------------------+-------------------+-------------+--------------------+----------------+------------------+----------------+--------------+
+; state.RESET1        ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 0                ; 0                 ; 0           ; 0                  ; 0              ; 0                ; 0              ; 0            ;
+; state.FUNC_SET      ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 0                ; 0                 ; 0           ; 0                  ; 0              ; 0                ; 1              ; 1            ;
+; state.DISPLAY_ON    ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 0                ; 0                 ; 0           ; 0                  ; 0              ; 1                ; 0              ; 1            ;
+; state.MODE_SET      ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 0                ; 0                 ; 0           ; 0                  ; 1              ; 0                ; 0              ; 1            ;
+; state.Print_String  ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 0                ; 0                 ; 0           ; 1                  ; 0              ; 0                ; 0              ; 1            ;
+; state.LINE2         ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 0                ; 0                 ; 1           ; 0                  ; 0              ; 0                ; 0              ; 1            ;
+; state.RETURN_HOME   ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 0                ; 1                 ; 0           ; 0                  ; 0              ; 0                ; 0              ; 1            ;
+; state.DROP_LCD_E    ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 1                ; 0                 ; 0           ; 0                  ; 0              ; 0                ; 0              ; 1            ;
+; state.HOLD          ; 0                   ; 0                 ; 0            ; 0            ; 1          ; 0                ; 0                 ; 0           ; 0                  ; 0              ; 0                ; 0              ; 1            ;
+; state.RESET2        ; 0                   ; 0                 ; 0            ; 1            ; 0          ; 0                ; 0                 ; 0           ; 0                  ; 0              ; 0                ; 0              ; 1            ;
+; state.RESET3        ; 0                   ; 0                 ; 1            ; 0            ; 0          ; 0                ; 0                 ; 0           ; 0                  ; 0              ; 0                ; 0              ; 1            ;
+; state.DISPLAY_OFF   ; 0                   ; 1                 ; 0            ; 0            ; 0          ; 0                ; 0                 ; 0           ; 0                  ; 0              ; 0                ; 0              ; 1            ;
+; state.DISPLAY_CLEAR ; 1                   ; 0                 ; 0            ; 0            ; 0          ; 0                ; 0                 ; 0           ; 0                  ; 0              ; 0                ; 0              ; 1            ;
++---------------------+---------------------+-------------------+--------------+--------------+------------+------------------+-------------------+-------------+--------------------+----------------+------------------+----------------+--------------+
+
+
++--------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                   ;
++---------------------------------------------+----------------------------------------+
+; Register name                               ; Reason for Removal                     ;
++---------------------------------------------+----------------------------------------+
+; lcd_top:xDisp|LCD_Display:u1|LCD_RW_INT     ; Stuck at GND due to stuck port data_in ;
+; fsm:xfsm|state[4..30]                       ; Merged with fsm:xfsm|state[31]         ;
+; fsm:xfsm|state[31]                          ; Stuck at GND due to stuck port data_in ;
+; cardManager:manager|hands[3][4]             ; Stuck at GND due to stuck port data_in ;
+; cardManager:manager|hands[3][3]             ; Stuck at GND due to stuck port data_in ;
+; cardManager:manager|hands[3][2]             ; Stuck at GND due to stuck port data_in ;
+; cardManager:manager|hands[3][1]             ; Stuck at GND due to stuck port data_in ;
+; cardManager:manager|hands[3][0]             ; Stuck at GND due to stuck port data_in ;
+; cardManager:manager|hands[3][9]             ; Stuck at GND due to stuck port data_in ;
+; cardManager:manager|hands[3][8]             ; Stuck at GND due to stuck port data_in ;
+; cardManager:manager|hands[3][7]             ; Stuck at GND due to stuck port data_in ;
+; cardManager:manager|hands[3][6]             ; Stuck at GND due to stuck port data_in ;
+; cardManager:manager|hands[3][5]             ; Stuck at GND due to stuck port data_in ;
+; lcd_top:xDisp|LCD_Display:u1|next_command~2 ; Lost fanout                            ;
+; lcd_top:xDisp|LCD_Display:u1|next_command~3 ; Lost fanout                            ;
+; lcd_top:xDisp|LCD_Display:u1|next_command~4 ; Lost fanout                            ;
+; lcd_top:xDisp|LCD_Display:u1|next_command~5 ; Lost fanout                            ;
+; lcd_top:xDisp|LCD_Display:u1|state~14       ; Lost fanout                            ;
+; lcd_top:xDisp|LCD_Display:u1|state~15       ; Lost fanout                            ;
+; lcd_top:xDisp|LCD_Display:u1|state~16       ; Lost fanout                            ;
+; lcd_top:xDisp|LCD_Display:u1|state~17       ; Lost fanout                            ;
+; Total Number of Removed Registers = 47      ;                                        ;
++---------------------------------------------+----------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 198   ;
+; Number of registers using Synchronous Clear  ; 72    ;
+; Number of registers using Synchronous Load   ; 5     ;
+; Number of registers using Asynchronous Clear ; 34    ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 84    ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++-------------------------------------------------------+
+; Inverted Register Statistics                          ;
++---------------------------------------------+---------+
+; Inverted Register                           ; Fan out ;
++---------------------------------------------+---------+
+; cardPuller:puller|lfsr:randGen|registers[0] ; 24      ;
+; Total number of inverted registers = 1      ;         ;
++---------------------------------------------+---------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                          ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------+
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |blackjack|cardManager:manager|hands[1][3]                ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |blackjack|cardManager:manager|hands[1][6]                ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |blackjack|cardManager:manager|hands[2][9]                ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |blackjack|cardManager:manager|hands[0][4]                ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |blackjack|cardManager:manager|hands[2][3]                ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |blackjack|cardManager:manager|hands[3][0]                ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |blackjack|cardManager:manager|hands[3][5]                ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |blackjack|cardManager:manager|hands[0][6]                ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |blackjack|fsm:xfsm|d_drawn[1]                            ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |blackjack|fsm:xfsm|p2_drawn[1]                           ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |blackjack|fsm:xfsm|p1_drawn[1]                           ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |blackjack|cardPuller:puller|card[3]                      ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; Yes        ; |blackjack|lcd_top:xDisp|LCD_Display:u1|DATA_BUS_VALUE[4] ;
+; 4:1                ; 10 bits   ; 20 LEs        ; 20 LEs               ; 0 LEs                  ; No         ; |blackjack|cardManager:manager|Mux0                       ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; No         ; |blackjack|fsm:xfsm|p1_best[4]                            ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; No         ; |blackjack|fsm:xfsm|p2_best[2]                            ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; No         ; |blackjack|fsm:xfsm|d_best[1]                             ;
+; 3:1                ; 9 bits    ; 18 LEs        ; 18 LEs               ; 0 LEs                  ; No         ; |blackjack|cardManager:manager|high[4]                    ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; No         ; |blackjack|cardManager:manager|hands                      ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |blackjack|playerAI:ai|hit                                ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------+
+
+
++---------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: lcd_top:xDisp|LCD_Display:u1 ;
++----------------+-------+--------------------------------------------------+
+; Parameter Name ; Value ; Type                                             ;
++----------------+-------+--------------------------------------------------+
+; HOLD           ; 0000  ; Unsigned Binary                                  ;
+; FUNC_SET       ; 0001  ; Unsigned Binary                                  ;
+; DISPLAY_ON     ; 0010  ; Unsigned Binary                                  ;
+; MODE_SET       ; 0011  ; Unsigned Binary                                  ;
+; Print_String   ; 0100  ; Unsigned Binary                                  ;
+; LINE2          ; 0101  ; Unsigned Binary                                  ;
+; RETURN_HOME    ; 0110  ; Unsigned Binary                                  ;
+; DROP_LCD_E     ; 0111  ; Unsigned Binary                                  ;
+; RESET1         ; 1000  ; Unsigned Binary                                  ;
+; RESET2         ; 1001  ; Unsigned Binary                                  ;
+; RESET3         ; 1010  ; Unsigned Binary                                  ;
+; DISPLAY_OFF    ; 1011  ; Unsigned Binary                                  ;
+; DISPLAY_CLEAR  ; 1100  ; Unsigned Binary                                  ;
++----------------+-------+--------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: lcd_top:xDisp|lpm_divide:Mod1 ;
++------------------------+----------------+--------------------------------------+
+; Parameter Name         ; Value          ; Type                                 ;
++------------------------+----------------+--------------------------------------+
+; LPM_WIDTHN             ; 5              ; Untyped                              ;
+; LPM_WIDTHD             ; 4              ; Untyped                              ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                              ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                              ;
+; LPM_PIPELINE           ; 0              ; Untyped                              ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                              ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                              ;
+; CBXI_PARAMETER         ; lpm_divide_j9m ; Untyped                              ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                              ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                              ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                           ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                         ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                         ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                       ;
++------------------------+----------------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: lcd_top:xDisp|lpm_divide:Div1 ;
++------------------------+----------------+--------------------------------------+
+; Parameter Name         ; Value          ; Type                                 ;
++------------------------+----------------+--------------------------------------+
+; LPM_WIDTHN             ; 5              ; Untyped                              ;
+; LPM_WIDTHD             ; 4              ; Untyped                              ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                              ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                              ;
+; LPM_PIPELINE           ; 0              ; Untyped                              ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                              ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                              ;
+; CBXI_PARAMETER         ; lpm_divide_ghm ; Untyped                              ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                              ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                              ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                           ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                         ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                         ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                       ;
++------------------------+----------------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: lcd_top:xDisp|lpm_divide:Mod3 ;
++------------------------+----------------+--------------------------------------+
+; Parameter Name         ; Value          ; Type                                 ;
++------------------------+----------------+--------------------------------------+
+; LPM_WIDTHN             ; 5              ; Untyped                              ;
+; LPM_WIDTHD             ; 4              ; Untyped                              ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                              ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                              ;
+; LPM_PIPELINE           ; 0              ; Untyped                              ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                              ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                              ;
+; CBXI_PARAMETER         ; lpm_divide_j9m ; Untyped                              ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                              ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                              ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                           ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                         ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                         ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                       ;
++------------------------+----------------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: lcd_top:xDisp|lpm_divide:Div3 ;
++------------------------+----------------+--------------------------------------+
+; Parameter Name         ; Value          ; Type                                 ;
++------------------------+----------------+--------------------------------------+
+; LPM_WIDTHN             ; 5              ; Untyped                              ;
+; LPM_WIDTHD             ; 4              ; Untyped                              ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                              ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                              ;
+; LPM_PIPELINE           ; 0              ; Untyped                              ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                              ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                              ;
+; CBXI_PARAMETER         ; lpm_divide_ghm ; Untyped                              ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                              ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                              ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                           ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                         ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                         ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                       ;
++------------------------+----------------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: lcd_top:xDisp|lpm_divide:Mod4 ;
++------------------------+----------------+--------------------------------------+
+; Parameter Name         ; Value          ; Type                                 ;
++------------------------+----------------+--------------------------------------+
+; LPM_WIDTHN             ; 5              ; Untyped                              ;
+; LPM_WIDTHD             ; 4              ; Untyped                              ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                              ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                              ;
+; LPM_PIPELINE           ; 0              ; Untyped                              ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                              ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                              ;
+; CBXI_PARAMETER         ; lpm_divide_j9m ; Untyped                              ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                              ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                              ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                           ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                         ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                         ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                       ;
++------------------------+----------------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: lcd_top:xDisp|lpm_divide:Mod0 ;
++------------------------+----------------+--------------------------------------+
+; Parameter Name         ; Value          ; Type                                 ;
++------------------------+----------------+--------------------------------------+
+; LPM_WIDTHN             ; 5              ; Untyped                              ;
+; LPM_WIDTHD             ; 4              ; Untyped                              ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                              ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                              ;
+; LPM_PIPELINE           ; 0              ; Untyped                              ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                              ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                              ;
+; CBXI_PARAMETER         ; lpm_divide_j9m ; Untyped                              ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                              ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                              ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                           ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                         ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                         ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                       ;
++------------------------+----------------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: lcd_top:xDisp|lpm_divide:Mod2 ;
++------------------------+----------------+--------------------------------------+
+; Parameter Name         ; Value          ; Type                                 ;
++------------------------+----------------+--------------------------------------+
+; LPM_WIDTHN             ; 5              ; Untyped                              ;
+; LPM_WIDTHD             ; 4              ; Untyped                              ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                              ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                              ;
+; LPM_PIPELINE           ; 0              ; Untyped                              ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                              ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                              ;
+; CBXI_PARAMETER         ; lpm_divide_j9m ; Untyped                              ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                              ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                              ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                           ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                         ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                         ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                       ;
++------------------------+----------------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: lcd_top:xDisp|lpm_divide:Div4 ;
++------------------------+----------------+--------------------------------------+
+; Parameter Name         ; Value          ; Type                                 ;
++------------------------+----------------+--------------------------------------+
+; LPM_WIDTHN             ; 5              ; Untyped                              ;
+; LPM_WIDTHD             ; 4              ; Untyped                              ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                              ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                              ;
+; LPM_PIPELINE           ; 0              ; Untyped                              ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                              ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                              ;
+; CBXI_PARAMETER         ; lpm_divide_ghm ; Untyped                              ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                              ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                              ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                           ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                         ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                         ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                       ;
++------------------------+----------------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: lcd_top:xDisp|lpm_divide:Div0 ;
++------------------------+----------------+--------------------------------------+
+; Parameter Name         ; Value          ; Type                                 ;
++------------------------+----------------+--------------------------------------+
+; LPM_WIDTHN             ; 5              ; Untyped                              ;
+; LPM_WIDTHD             ; 4              ; Untyped                              ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                              ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                              ;
+; LPM_PIPELINE           ; 0              ; Untyped                              ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                              ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                              ;
+; CBXI_PARAMETER         ; lpm_divide_ghm ; Untyped                              ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                              ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                              ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                           ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                         ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                         ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                       ;
++------------------------+----------------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: lcd_top:xDisp|lpm_divide:Div2 ;
++------------------------+----------------+--------------------------------------+
+; Parameter Name         ; Value          ; Type                                 ;
++------------------------+----------------+--------------------------------------+
+; LPM_WIDTHN             ; 5              ; Untyped                              ;
+; LPM_WIDTHD             ; 4              ; Untyped                              ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                              ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                              ;
+; LPM_PIPELINE           ; 0              ; Untyped                              ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                              ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                              ;
+; CBXI_PARAMETER         ; lpm_divide_ghm ; Untyped                              ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                              ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                              ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                           ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                         ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                         ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                       ;
++------------------------+----------------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "lcd_top:xDisp|LCD_Display:u1|LCD_display_string:u1"                                                                                                                                     ;
++--------------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port         ; Type  ; Severity ; Details                                                                                                                                                                          ;
++--------------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; dmax_ones    ; Input ; Warning  ; Input port expression (5 bits) is wider than the input port (4 bits) it drives.  The 1 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; dmax_tens    ; Input ; Warning  ; Input port expression (5 bits) is wider than the input port (4 bits) it drives.  The 1 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; p1max_ones   ; Input ; Warning  ; Input port expression (5 bits) is wider than the input port (4 bits) it drives.  The 1 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; p1max_tens   ; Input ; Warning  ; Input port expression (5 bits) is wider than the input port (4 bits) it drives.  The 1 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; p1min_ones   ; Input ; Warning  ; Input port expression (5 bits) is wider than the input port (4 bits) it drives.  The 1 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; p1min_tens   ; Input ; Warning  ; Input port expression (5 bits) is wider than the input port (4 bits) it drives.  The 1 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; p2max_ones   ; Input ; Warning  ; Input port expression (5 bits) is wider than the input port (4 bits) it drives.  The 1 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; p2max_tens   ; Input ; Warning  ; Input port expression (5 bits) is wider than the input port (4 bits) it drives.  The 1 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; p2min_ones   ; Input ; Warning  ; Input port expression (5 bits) is wider than the input port (4 bits) it drives.  The 1 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; p2min_tens   ; Input ; Warning  ; Input port expression (5 bits) is wider than the input port (4 bits) it drives.  The 1 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; currentState ; Input ; Warning  ; Input port expression (4 bits) is smaller than the input port (5 bits) it drives.  Extra input bit(s) "currentState[4..4]" will be connected to GND.                             ;
++--------------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------+
+; Port Connectivity Checks: "lcd_top:xDisp|LCD_Display:u1" ;
++---------------+-------+----------+-----------------------+
+; Port          ; Type  ; Severity ; Details               ;
++---------------+-------+----------+-----------------------+
+; dmax_ones[4]  ; Input ; Info     ; Stuck at GND          ;
+; p1max_ones[4] ; Input ; Info     ; Stuck at GND          ;
+; p1min_ones[4] ; Input ; Info     ; Stuck at GND          ;
+; p2max_ones[4] ; Input ; Info     ; Stuck at GND          ;
+; p2min_ones[4] ; Input ; Info     ; Stuck at GND          ;
++---------------+-------+----------+-----------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "lcd_top:xDisp"                                                                                               ;
++----------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                                                  ;
++----------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; LCD_BLON ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
++----------+--------+----------+----------------------------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; boundary_port         ; 44                          ;
+; cycloneiii_ff         ; 198                         ;
+;     CLR               ; 14                          ;
+;     CLR SCLR          ; 20                          ;
+;     ENA               ; 79                          ;
+;     ENA SLD           ; 5                           ;
+;     SCLR              ; 52                          ;
+;     plain             ; 28                          ;
+; cycloneiii_io_obuf    ; 8                           ;
+; cycloneiii_lcell_comb ; 780                         ;
+;     arith             ; 135                         ;
+;         2 data inputs ; 85                          ;
+;         3 data inputs ; 50                          ;
+;     normal            ; 645                         ;
+;         0 data inputs ; 22                          ;
+;         1 data inputs ; 11                          ;
+;         2 data inputs ; 118                         ;
+;         3 data inputs ; 74                          ;
+;         4 data inputs ; 420                         ;
+;                       ;                             ;
+; Max LUT depth         ; 13.70                       ;
+; Average LUT depth     ; 7.57                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:07     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+    Info: Processing started: Wed Dec 04 21:18:36 2019
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off lcd -c lcd
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file blackjack.sv
+    Info (12023): Found entity 1: blackjack File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/blackjack.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file syncbutton.sv
+    Info (12023): Found entity 1: syncButton File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/syncButton.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file simpledualportmemory.sv
+    Info (12023): Found entity 1: simpleDualPortMemory File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/simpleDualPortMemory.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file playerai.sv
+    Info (12023): Found entity 1: playerAI File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/playerAI.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file lfsr.sv
+    Info (12023): Found entity 1: lfsr File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/lfsr.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file fsm.sv
+    Info (12023): Found entity 1: fsm File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/fsm.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file cardpuller.sv
+    Info (12023): Found entity 1: cardPuller File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/cardPuller.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file cardmanager.sv
+    Info (12023): Found entity 1: cardManager File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/cardManager.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file asyncbutton.sv
+    Info (12023): Found entity 1: asyncButton File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/asyncButton.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file reset_delay.sv
+    Info (12023): Found entity 1: Reset_Delay File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/Reset_Delay.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file lcd_top.sv
+    Info (12023): Found entity 1: lcd_top File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/lcd_top.sv Line: 1
+Info (12021): Found 2 design units, including 2 entities, in source file lcd_display.sv
+    Info (12023): Found entity 1: LCD_Display File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/LCD_Display.sv Line: 40
+    Info (12023): Found entity 2: LCD_display_string File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/LCD_Display.sv Line: 271
+Warning (10236): Verilog HDL Implicit Net warning at blackjack.sv(56): created implicit net for "cardsUpdated" File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/blackjack.sv Line: 56
+Info (12127): Elaborating entity "blackjack" for the top level hierarchy
+Warning (10034): Output port "LEDR[13..6]" at blackjack.sv(3) has no driver File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/blackjack.sv Line: 3
+Warning (10034): Output port "LEDG[5..4]" at blackjack.sv(4) has no driver File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/blackjack.sv Line: 4
+Info (12128): Elaborating entity "asyncButton" for hierarchy "asyncButton:xhit" File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/blackjack.sv Line: 52
+Critical Warning (10237): Verilog HDL warning at asyncButton.sv(17): can't infer register for assignment in edge-triggered always construct because the clock isn't obvious. Generated combinational logic instead File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/asyncButton.sv Line: 17
+Critical Warning (10237): Verilog HDL warning at asyncButton.sv(18): can't infer register for assignment in edge-triggered always construct because the clock isn't obvious. Generated combinational logic instead File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/asyncButton.sv Line: 18
+Info (12128): Elaborating entity "syncButton" for hierarchy "syncButton:xsynchhit" File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/blackjack.sv Line: 53
+Info (12128): Elaborating entity "fsm" for hierarchy "fsm:xfsm" File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/blackjack.sv Line: 56
+Warning (10036): Verilog HDL or VHDL warning at fsm.sv(41): object "d_bust" assigned a value but never read File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/fsm.sv Line: 41
+Warning (10230): Verilog HDL assignment warning at fsm.sv(24): truncated value with size 32 to match size of target (4) File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/fsm.sv Line: 24
+Warning (10230): Verilog HDL assignment warning at fsm.sv(36): truncated value with size 6 to match size of target (5) File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/fsm.sv Line: 36
+Warning (10230): Verilog HDL assignment warning at fsm.sv(37): truncated value with size 6 to match size of target (5) File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/fsm.sv Line: 37
+Warning (10230): Verilog HDL assignment warning at fsm.sv(38): truncated value with size 6 to match size of target (5) File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/fsm.sv Line: 38
+Warning (10230): Verilog HDL assignment warning at fsm.sv(61): truncated value with size 32 to match size of target (2) File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/fsm.sv Line: 61
+Warning (10230): Verilog HDL assignment warning at fsm.sv(68): truncated value with size 32 to match size of target (2) File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/fsm.sv Line: 68
+Warning (10230): Verilog HDL assignment warning at fsm.sv(75): truncated value with size 32 to match size of target (2) File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/fsm.sv Line: 75
+Info (12128): Elaborating entity "playerAI" for hierarchy "playerAI:ai" File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/blackjack.sv Line: 57
+Info (12128): Elaborating entity "cardPuller" for hierarchy "cardPuller:puller" File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/blackjack.sv Line: 58
+Warning (10230): Verilog HDL assignment warning at cardPuller.sv(18): truncated value with size 32 to match size of target (4) File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/cardPuller.sv Line: 18
+Info (12128): Elaborating entity "lfsr" for hierarchy "cardPuller:puller|lfsr:randGen" File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/cardPuller.sv Line: 24
+Warning (10230): Verilog HDL assignment warning at lfsr.sv(23): truncated value with size 32 to match size of target (6) File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/lfsr.sv Line: 23
+Info (12128): Elaborating entity "cardManager" for hierarchy "cardManager:manager" File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/blackjack.sv Line: 59
+Warning (10036): Verilog HDL or VHDL warning at cardManager.sv(10): object "prevUserSelect" assigned a value but never read File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/cardManager.sv Line: 10
+Warning (10230): Verilog HDL assignment warning at cardManager.sv(53): truncated value with size 32 to match size of target (5) File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/cardManager.sv Line: 53
+Warning (10230): Verilog HDL assignment warning at cardManager.sv(56): truncated value with size 32 to match size of target (5) File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/cardManager.sv Line: 56
+Warning (10230): Verilog HDL assignment warning at cardManager.sv(59): truncated value with size 32 to match size of target (5) File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/cardManager.sv Line: 59
+Info (12128): Elaborating entity "lcd_top" for hierarchy "lcd_top:xDisp" File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/blackjack.sv Line: 60
+Warning (10036): Verilog HDL or VHDL warning at lcd_top.sv(19): object "RST" assigned a value but never read File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/lcd_top.sv Line: 19
+Warning (10036): Verilog HDL or VHDL warning at lcd_top.sv(43): object "dmin_ones" assigned a value but never read File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/lcd_top.sv Line: 43
+Warning (10036): Verilog HDL or VHDL warning at lcd_top.sv(44): object "dmin_tens" assigned a value but never read File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/lcd_top.sv Line: 44
+Warning (10230): Verilog HDL assignment warning at lcd_top.sv(46): truncated value with size 32 to match size of target (5) File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/lcd_top.sv Line: 46
+Warning (10230): Verilog HDL assignment warning at lcd_top.sv(47): truncated value with size 32 to match size of target (5) File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/lcd_top.sv Line: 47
+Warning (10230): Verilog HDL assignment warning at lcd_top.sv(48): truncated value with size 32 to match size of target (5) File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/lcd_top.sv Line: 48
+Warning (10230): Verilog HDL assignment warning at lcd_top.sv(49): truncated value with size 32 to match size of target (5) File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/lcd_top.sv Line: 49
+Warning (10230): Verilog HDL assignment warning at lcd_top.sv(51): truncated value with size 32 to match size of target (5) File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/lcd_top.sv Line: 51
+Warning (10230): Verilog HDL assignment warning at lcd_top.sv(52): truncated value with size 32 to match size of target (5) File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/lcd_top.sv Line: 52
+Warning (10230): Verilog HDL assignment warning at lcd_top.sv(53): truncated value with size 32 to match size of target (5) File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/lcd_top.sv Line: 53
+Warning (10230): Verilog HDL assignment warning at lcd_top.sv(54): truncated value with size 32 to match size of target (5) File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/lcd_top.sv Line: 54
+Warning (10230): Verilog HDL assignment warning at lcd_top.sv(56): truncated value with size 32 to match size of target (5) File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/lcd_top.sv Line: 56
+Warning (10230): Verilog HDL assignment warning at lcd_top.sv(57): truncated value with size 32 to match size of target (5) File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/lcd_top.sv Line: 57
+Warning (10230): Verilog HDL assignment warning at lcd_top.sv(58): truncated value with size 32 to match size of target (5) File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/lcd_top.sv Line: 58
+Warning (10230): Verilog HDL assignment warning at lcd_top.sv(59): truncated value with size 32 to match size of target (5) File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/lcd_top.sv Line: 59
+Info (12128): Elaborating entity "Reset_Delay" for hierarchy "lcd_top:xDisp|Reset_Delay:r0" File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/lcd_top.sv Line: 24
+Info (12128): Elaborating entity "LCD_Display" for hierarchy "lcd_top:xDisp|LCD_Display:u1" File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/lcd_top.sv Line: 83
+Info (12128): Elaborating entity "LCD_display_string" for hierarchy "lcd_top:xDisp|LCD_Display:u1|LCD_display_string:u1" File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/LCD_Display.sv Line: 88
+Info (278001): Inferred 10 megafunctions from design logic
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "lcd_top:xDisp|Mod1" File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/lcd_top.sv Line: 48
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "lcd_top:xDisp|Div1" File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/lcd_top.sv Line: 49
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "lcd_top:xDisp|Mod3" File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/lcd_top.sv Line: 53
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "lcd_top:xDisp|Div3" File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/lcd_top.sv Line: 54
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "lcd_top:xDisp|Mod4" File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/lcd_top.sv Line: 56
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "lcd_top:xDisp|Mod0" File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/lcd_top.sv Line: 46
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "lcd_top:xDisp|Mod2" File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/lcd_top.sv Line: 51
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "lcd_top:xDisp|Div4" File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/lcd_top.sv Line: 57
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "lcd_top:xDisp|Div0" File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/lcd_top.sv Line: 47
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "lcd_top:xDisp|Div2" File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/lcd_top.sv Line: 52
+Info (12130): Elaborated megafunction instantiation "lcd_top:xDisp|lpm_divide:Mod1" File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/lcd_top.sv Line: 48
+Info (12133): Instantiated megafunction "lcd_top:xDisp|lpm_divide:Mod1" with the following parameter: File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/lcd_top.sv Line: 48
+    Info (12134): Parameter "LPM_WIDTHN" = "5"
+    Info (12134): Parameter "LPM_WIDTHD" = "4"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_j9m.tdf
+    Info (12023): Found entity 1: lpm_divide_j9m File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/db/lpm_divide_j9m.tdf Line: 24
+Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_8kh.tdf
+    Info (12023): Found entity 1: sign_div_unsign_8kh File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/db/sign_div_unsign_8kh.tdf Line: 24
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_44f.tdf
+    Info (12023): Found entity 1: alt_u_div_44f File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/db/alt_u_div_44f.tdf Line: 26
+Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_7pc.tdf
+    Info (12023): Found entity 1: add_sub_7pc File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/db/add_sub_7pc.tdf Line: 22
+Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_8pc.tdf
+    Info (12023): Found entity 1: add_sub_8pc File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/db/add_sub_8pc.tdf Line: 22
+Info (12130): Elaborated megafunction instantiation "lcd_top:xDisp|lpm_divide:Div1" File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/lcd_top.sv Line: 49
+Info (12133): Instantiated megafunction "lcd_top:xDisp|lpm_divide:Div1" with the following parameter: File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/lcd_top.sv Line: 49
+    Info (12134): Parameter "LPM_WIDTHN" = "5"
+    Info (12134): Parameter "LPM_WIDTHD" = "4"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_ghm.tdf
+    Info (12023): Found entity 1: lpm_divide_ghm File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/db/lpm_divide_ghm.tdf Line: 24
+Warning (12241): 2 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Warning (13009): TRI or OPNDRN buffers permanently enabled
+    Warning (13010): Node "lcd_top:xDisp|LCD_Display:u1|DATA_BUS[0]~synth" File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/LCD_Display.sv Line: 47
+    Warning (13010): Node "lcd_top:xDisp|LCD_Display:u1|DATA_BUS[1]~synth" File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/LCD_Display.sv Line: 47
+    Warning (13010): Node "lcd_top:xDisp|LCD_Display:u1|DATA_BUS[2]~synth" File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/LCD_Display.sv Line: 47
+    Warning (13010): Node "lcd_top:xDisp|LCD_Display:u1|DATA_BUS[3]~synth" File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/LCD_Display.sv Line: 47
+    Warning (13010): Node "lcd_top:xDisp|LCD_Display:u1|DATA_BUS[4]~synth" File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/LCD_Display.sv Line: 47
+    Warning (13010): Node "lcd_top:xDisp|LCD_Display:u1|DATA_BUS[5]~synth" File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/LCD_Display.sv Line: 47
+    Warning (13010): Node "lcd_top:xDisp|LCD_Display:u1|DATA_BUS[6]~synth" File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/LCD_Display.sv Line: 47
+    Warning (13010): Node "lcd_top:xDisp|LCD_Display:u1|DATA_BUS[7]~synth" File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/LCD_Display.sv Line: 47
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "LEDR[6]" is stuck at GND File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/blackjack.sv Line: 3
+    Warning (13410): Pin "LEDR[7]" is stuck at GND File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/blackjack.sv Line: 3
+    Warning (13410): Pin "LEDR[8]" is stuck at GND File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/blackjack.sv Line: 3
+    Warning (13410): Pin "LEDR[9]" is stuck at GND File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/blackjack.sv Line: 3
+    Warning (13410): Pin "LEDR[10]" is stuck at GND File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/blackjack.sv Line: 3
+    Warning (13410): Pin "LEDR[11]" is stuck at GND File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/blackjack.sv Line: 3
+    Warning (13410): Pin "LEDR[12]" is stuck at GND File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/blackjack.sv Line: 3
+    Warning (13410): Pin "LEDR[13]" is stuck at GND File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/blackjack.sv Line: 3
+    Warning (13410): Pin "LEDG[4]" is stuck at GND File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/blackjack.sv Line: 4
+    Warning (13410): Pin "LEDG[5]" is stuck at GND File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/blackjack.sv Line: 4
+    Warning (13410): Pin "LCD_ON" is stuck at VCC File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/blackjack.sv Line: 5
+    Warning (13410): Pin "LCD_BLON" is stuck at GND File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/blackjack.sv Line: 5
+    Warning (13410): Pin "LCD_RW" is stuck at GND File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/blackjack.sv Line: 5
+Info (286030): Timing-Driven Synthesis is running
+Info (17049): 8 registers lost all their fanouts during netlist optimizations.
+Info (144001): Generated suppressed messages file C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/output_files/lcd.map.smsg
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 1 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "resetButton" File: C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/blackjack.sv Line: 2
+Info (21057): Implemented 871 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 4 input pins
+    Info (21059): Implemented 32 output pins
+    Info (21060): Implemented 8 bidirectional pins
+    Info (21061): Implemented 827 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 61 warnings
+    Info: Peak virtual memory: 4771 megabytes
+    Info: Processing ended: Wed Dec 04 21:19:09 2019
+    Info: Elapsed time: 00:00:33
+    Info: Total CPU time (on all processors): 00:00:49
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in C:/Users/Robbie/Desktop/final_golden_v1-20191205T051540Z-001/final_golden_v1/output_files/lcd.map.smsg.
+
+

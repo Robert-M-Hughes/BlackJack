@@ -1,0 +1,48 @@
+module playerAI(
+	input logic clk,
+	input logic [4:0] p_high, p_low, d_high,
+	output logic hold, hit
+);
+
+	// Track hand we are using for move choice
+	logic [4:0] playerHand;
+	assign playerHand = p_high > 21 ? p_high : p_low;
+
+	// Track dealer's first card
+	logic [4:0] d_init = 0;
+	
+	/* Save first dealer card  */
+	always_ff @(posedge clk) begin
+		if(d_init == 0) begin
+			d_init <= d_high;
+		end
+	end
+
+	/* Determine hit or hold */
+	always_comb begin
+		if(playerHand == 21) begin
+			hit <= 0;
+			hold <= 1;
+		end
+		else if (playerHand <= 11) begin
+			hit <= 1;
+			hold <= 0;
+		end
+		else if (playerHand == 12 && d_init < 4 && d_init > 6) begin
+			hit <= 1;
+			hold <= 0;
+		end
+		else if (playerHand == 12 && d_init > 3 && d_init < 7) begin
+			hit <= 0;
+			hold <= 1;
+		end
+		else if (d_init >= 7) begin
+			hit <= 1;
+			hold <= 0;
+		end
+		else begin
+			hit <= 0;
+			hold <= 1;
+		end
+	end
+endmodule
